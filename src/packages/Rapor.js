@@ -267,6 +267,15 @@ const Rapor = () => {
           selectedRapor.raporTarih !== '' 
       );
     }
+    function isNotClear() {
+      return (
+          selectedRapor.doktor !== '' &&
+          selectedRapor.dosyaNumarasi !== '' &&
+          selectedRapor.taniBaslik !== '' &&
+          selectedRapor.taniBaslik !== '' &&
+          selectedRapor.raporTarih !== '' 
+      );
+    }
 
 
     
