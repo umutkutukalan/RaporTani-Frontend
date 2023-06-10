@@ -1,0 +1,5 @@
+.disabledRole{
+    transition: .6s;
+    opacity: 0.5;
+    /* pointer-events: none; */
+}
