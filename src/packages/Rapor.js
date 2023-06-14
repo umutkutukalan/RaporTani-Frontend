@@ -407,15 +407,15 @@ const Rapor = () => {
                         <br />
                         <div className='text-center'>
                             {selectedRapor.id ? (<Button variant='primary' type='button' onClick={saveRapor}>
-                                Update
-                            </Button>) : (<Button variant='primary' type='button' onClick={createRapor}> Create </Button>)}
+                                Güncelle
+                            </Button>) : (<Button variant='primary'  disabled={!isNotClear()} type='button' onClick={createRapor}> Oluştur </Button>)}
                             {isNotClear() ? (
                             <>
                                 <Button variant="outline-primary" type="button" onClick={clearForm}>
-                                    Clear
+                                    Temizle
                                 </Button>{' '}
                                 {selectedRapor.id ? (<Button variant="danger" type="button" onClick={handleShow}>
-                                    Delete
+                                    Sil
                                 </Button>) : ('')}
                             </>
                         ) : ('')}
@@ -431,7 +431,7 @@ const Rapor = () => {
                                     {hasta.ad} {hasta.soyad}
                                 </div>
                                 <Button variant="outline-primary" size='sm' onClick={() => addHasta(hasta)}>
-                                    Add
+                                    Ekle
                                 </Button>
                             </ListGroup.Item>
                         ))}
@@ -441,14 +441,14 @@ const Rapor = () => {
             </Row>  
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Delete</Modal.Title>
+                    <Modal.Title>Sil</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Emin misiniz?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Kapat
                     </Button>
-                    <Button variant='danger' onClick={deleteRapor}> Delete</Button>
+                    <Button variant='danger' onClick={deleteRapor}> Sil</Button>
                 </Modal.Footer>
             </Modal>
       </Container>

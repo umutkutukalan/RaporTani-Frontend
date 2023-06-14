@@ -182,7 +182,7 @@ const Doktor = () => {
                         autoComplete='off'
                         name="hastaneKimlik"
                         maxLength={'7'}
-                        placeholder='Hastane kimlik numarasını giriniz'
+                        placeholder='Hastane Kimlik numarasını giriniz'
                         value={selectedUser.hastaneKimlik}
                         onChange={(e) => handleInputChange(e)}
                         className={selectedUser.role === 'HASTA' ? 'disabledRole' : ''}
@@ -232,17 +232,17 @@ const Doktor = () => {
                     <div className='text-center'>
                     <Button variant="primary" disabled={!isNotClear()} type="button" onClick={saveUser}>
                             {selectedUser.id ? (
-                                'Update'
-                            ) : ('Create')}
+                                'Güncelle'
+                            ) : ('Kaydet')}
                         </Button>
                         {' '}
                         {isNotClear() ? (
                             <>
                                 <Button variant="outline-primary" type="button" onClick={clearForm}>
-                                    Clear
+                                    Temizle
                                 </Button>{' '}
                                 {selectedUser.id ? (<Button variant="danger" type="button" onClick={handleShow}>
-                                    Delete
+                                    Sil
                                 </Button>) : ('')}
                             </>
 
@@ -254,14 +254,14 @@ const Doktor = () => {
           </Row>
           <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Delete</Modal.Title>
+                    <Modal.Title>Sil</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Emin misiniz?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Kapat
                     </Button>
-                    <Button variant='danger' onClick={deleteUser}> Delete</Button>
+                    <Button variant='danger' onClick={deleteUser}> Sil</Button>
                 </Modal.Footer>
             </Modal>
       </Container>
