@@ -1,145 +1,155 @@
-*FOR BACKEND* 
-Gerekli Java SDK
-- Java JDK 17
-Proje Yönetimi ve Derlemesi
-- Maven
+# *For Frontend*
 
-## **DATABASE**
+## *npm install*
 
-### *MySQL*(Projemdeki kodları temsili bağlayışım.)
-Projemde MySQL Database’yi kullandım. Spring Projesini MySQL’e bağlamak için;
-
-``` 
-spring.jpa.hibernate.ddl-auto = update
-spring.datasource.url = jdbc:mysql://localhost:3306/Kendi Schema’nızın adı yazılacak
-spring.datasource.username = root // Kendi kullanıcı adınızı yazınız
-spring.datasource.password = //Database’ye giriş şifrenizi yazının
-spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
+React Router Dom / React Router
+```bash
+npm install react-router-dom
+```
+Axios
+```bash
+npm install axios
 ```
 
-Örneğin Schema ismimi ‘RaporTani’ adında oluşturursam;
-
-```
-spring.datasource.url = jdbc:mysql://localhost:3306/RaporTani
-```
-
-Schema ismini, kullanıcı adını ve şifreyi doğru girdikten sonra MySQL için bağlantı koordinesi oluşmuş oluyor. Spring Security xml. dosyamızda bulunduğu için ve Token işlemi gerçekleştirmediğimiz için, (pom.xml) dosyamızda ki Security Dependency’leri yorum satıları içine alalım;
- 
-``` 
-<!--		<dependency>-->
-		<!--			<groupId>org.springframework.boot</groupId>-->
-		<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>--> 
-
-<!--		<dependency>-->
-		<!--			<groupId>org.springframework.security</groupId>-->
-		<!--			<artifactId>spring-security-test</artifactId>-->
-		<!--			<scope>test</scope>-->
-<!--		</dependency> —> 
+** react-router-dom ‘ u App.js’ e ekliyoruz.**
+```javascript
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 ```
 
-Böylelikle güvenlik duvarını kaldırıp hatasız bir şekilde Veri Tabanı bağlantısı gerçekleşecektir. Bu işlemlerin ardından kod diziminde verilen;
- 
-```
-@Entity
-@Table(name = "doktor")
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class Doktor {
+### **Bootstrap**
+
+Terminal ile proje’ye bootstrap’ı yüklüyoruz:
+```bash
+npm install bootstrap
 ```
 
- Doktor sınıfının @Table( name = ‘doktor’) olarak tanımlanışı Veri Tabanında 'doktor’  tablosunu oluşturmaya yarayacaktır. Aynı şekilde;
- 
-```
-@Column(name = "hastane_kimlik", length = 7)
-    private String hastaneKimlik;
-```
+Ardından alttaki kod dizimini App.js’ e tanımlıyoruz. (Bootstrap sitesinden ulaşılabilir.)
 
-‘Column’ adı altında tanımlanan ’name’ ise tablonun içinde oluşacak olan, parametreye verilen değerin veri tabanında ulaşacağı yeri gösterir. Kodlarda geçerli değerleri kullanabilecek olduğunuz gibi isim değişikliğine gitmek istediğinizde bu değerlerle oynamanız yeterli olacaktır.
-
-
-### *H2 Database*
-
-```
-<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-</dependency>
+```javascript
+import 'bootstrap/dist/css/bootstrap.min.css';
 ```
 
-(pom.xml) dosyanımıza eklediğimiz bu dependency ile ‘localhost’ üzerinden Table vo Column değerleri atadığımız değerlere ulaşabiliriz. Spring kodlarını çalıştırdıktan sonra gelen H2 Console söz diziminin yanında çıkacak olan;
+### **Browser Router, Routes, Roter**
 
-```
-```
-```
-H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:e0b577d6-6828-4484-8b28-5440f50e6e93'
-```
+```javascript
+function App() {
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<Hasta />}></Route>
+            <Route path='doktor' element={<Doktor />} />
+            <Route path='kayıt' element={<Rapor />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+}
 
-http://localhost:8080 bağlantısında olan projemize ‘h2-console’ eklentisini de yaparak;
-http://localhost:8080/h2-console sayfasına tarayıcıdan giriş yapıyoruz.
-
-Açılan Login sayfasının ‘ JDBC URL ‘ sine ,
-
-```
-Database available at 'jdbc:h2:mem:e0b577d6-6828-4484-8b28-5440f50e6e93'
-```
-
-kısmında gelen jdbc:h2:mem değerini bir bütün şeklinde yazıp, username değerini de;
-
-```
-url=jdbc:h2:mem:e0b577d6-6828-4484-8b28-5440f50e6e93 user=SA
-```
-
-verilen şekilde yazıyoruz ve ‘Connect’ diyoruz. Böylece H2 Console ile veri tabanına bağlantı sağlıyoruz.
-
-### *Docker ile veri tabanı oluşturma*
-
-Postgres databese’si oluşturalım. Terminale yazdığımız,
-
-```
-docker run —name postgres -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres
+export default App;
 ```
 
-komutu ile ‘postgres’ adında ‘password’ şifresiyle oluşan postgres veri tabanı oluşuyor. (5432:5432) değeri ile de default code olarak tanımlanıyor.
+kod dizimiyle üç sayfalık bir sayfa oluşturmuş oluyoruz. ‘index’ olarak tanımlamak projenin açılış sayfası anlamına gelirken, ‘path’ olarak tanımlamalar url’ye eşdeğer sayılmaktadır.
+Değerler ‘Layout.jsx’ sayfasında girilmiştir.
 
-## LOMBOK
+### **Proxy Kolaylığı**
+Örneğin ‘Rapor’ sayfası içinde,
 
-```
-@Entity
-@Table(name = "users")
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class User {
+```javascript
+fetch('http://localhost:8080/api/users/potential-hasta', {
 ```
 
-Örneğin, ‘User’ sınıfına atadığımız JPA '@Data’ anatasyonu; sınıf içinde tanımlanan , 
+değeriyle verilecek olan fetch değeri,  “ package.json “ sayfası içine yazılan,
 
+```javascript
+"proxy": "http://localhost:8080"
 ```
-@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Integer id;
-    @Column(name = "tc_kimlik",length=11)
-    private String tcKimlik;
-    @Column
-    private String ad;
-    @Column
-    private String soyad;
+kod satırından sonra;
 
-    @Enumerated(EnumType.STRING)
-    @Column
-    private Gender gender;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "urole")
-    private Role role;
+```javascript
+fetch('/api/users/potential-hasta', {
 ```
 
-String , Integer, Gender ve Role ile atanan parametrelerin Getter-Setter-toString değerlerini Lombok aracılığıyla otomatik olarak arka kısımda oluşturur ve kod temizliğine yardımcı olur.
+şeklinde değer alabilir. Paylaşılan ‘RaporTani - Frontend’ kodları buna uygun yazılmıştır.
 
-**Lomboku indiriyoruz ve kurulumunu kullanacağımız IDE’nin dosya konumuna yapıyoruz. Böylelikle Lombok kullanılır hale geliyor**
+## **Database’ye erişim**
+
+Parametrelerimiz, backend tarafında yazdığımız parametreler ile uyuşmalıdır.
+
+```javascript
+const [selectedRapor, setSelectedRapor] = useState({
+      taniBaslik: '',
+      taniDetay: '',
+      raporTarih: '',
+      dosyaNumarasi: '',
+      doktorId: 0,
+      doktor: {},
+      hastalar: []
+    })
+```
+
+Bunun ardından örnek olarak ‘createRapor’ fonksiyonunu ele alırsak;
+
+```javascript
+function createRapor() {
+      const rapor = {
+          dosyaNumarasi: selectedRapor.dosyaNumarasi,
+          taniBaslik: selectedRapor.taniBaslik,
+          taniDetay: selectedRapor.taniDetay,
+          raporTarih: selectedRapor.raporTarih,
+          doktor: {
+            id: Number(selectedRapor.doktorId)
+          },
+      }
+      fetch('/api/rapor', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+            body: JSON.stringify(rapor)
+        }).then((res) => res.json())
+            .then((result) => {
+                loadRaporlar();
+                clearForm();
+            });
+    }
+
+```
+
+Fetch bağlantısı sağlanan veri tabanının ‘rapor’ tablosunda bulunan (dosyaNumarasi, taniBaslik, taniDetay, raporTarih, doktor.id) parametlerine, frentend ‘ te girilen değerler atanıyor ve bu değerlerin veri tabanına işleyişi ise ‘cors’ modunda ‘POST’ metodu ile gerçekleşiyor. 
+
+Localhost’un (POST, PUT, DELETE..) metodlara izin verişi backend’te yazdığımız “Configuration”  ve “Bean” anatosyanu ile sağlanıyor:
+
+```
+@Configuration
+public class CrossOriginConfig {
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTİONS");
+            }
+        };
+    }
+}
+```
+
+
+# Projeyi Başlatma
+Frontend klasörüne giriyoruz.
+```bash
+cd frontend
+```
+
+Klasöre girdikten sonra projeyi başlatıyoruz.
+```
+npm start
+```
+
 
 
 
