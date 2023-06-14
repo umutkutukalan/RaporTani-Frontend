@@ -35,7 +35,7 @@ Ardından alttaki kod dizimini App.js’ e tanımlıyoruz. (Bootstrap sitesinden
 import 'bootstrap/dist/css/bootstrap.min.css';
 ```
 
-### **Browser Router, Routes, Roter**
+### **Browser Router, Routes, Route**
 
 ```javascript
 function App() {
