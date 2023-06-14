@@ -2,6 +2,12 @@
 
 ## *npm install*
 
+Klasöre giriyoruz ve indirme işlemlerini yapıyoruz.
+
+```bash
+cd RaporTani-Frontend
+```
+
 React Router Dom / React Router
 ```bash
 npm install react-router-dom
@@ -142,7 +148,7 @@ public class CrossOriginConfig {
 # Projeyi Başlatma
 Frontend klasörüne giriyoruz.
 ```bash
-cd frontend
+cd RaporTani-Frontend
 ```
 
 Klasöre girdikten sonra projeyi başlatıyoruz.
