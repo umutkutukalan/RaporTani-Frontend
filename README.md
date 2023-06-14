@@ -16,14 +16,14 @@ npm install axios
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 ```
 
-### **Bootstrap**
+### **Bootstrap Install**
 
 Terminal ile proje’ye bootstrap’ı yüklüyoruz:
 ```bash
 npm install bootstrap
 ```
 
-Ardından alttaki kod dizimini App.js’ e tanımlıyoruz. (Bootstrap sitesinden ulaşılabilir.)
+Ardından alttaki kod dizimini App.js’ e tanımlıyoruz. (Bootstrap sitesinden ulaşılabilir. Kaynak kodlarda tanımlı hâldedir.)
 
 ```javascript
 import 'bootstrap/dist/css/bootstrap.min.css';
