@@ -119,9 +119,9 @@ function createRapor() {
 
 Fetch bağlantısı sağlanan veri tabanının ‘rapor’ tablosunda bulunan (dosyaNumarasi, taniBaslik, taniDetay, raporTarih, doktor.id) parametlerine, frentend ‘ te girilen değerler atanıyor ve bu değerlerin veri tabanına işleyişi ise ‘cors’ modunda ‘POST’ metodu ile gerçekleşiyor. 
 
-Localhost’un (POST, PUT, DELETE..) metodlara izin verişi backend’te yazdığımız “Configuration”  ve “Bean” anatosyanu ile sağlanıyor:
+Localhost’un (POST, PUT, DELETE..) metodlarına izin verişi backend’te yazdığımız “Configuration”  ve “Bean” anatosyanu ile sağlanıyor:
 
-```
+```java
 @Configuration
 public class CrossOriginConfig {
 
