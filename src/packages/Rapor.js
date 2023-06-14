@@ -358,6 +358,7 @@ const Rapor = () => {
                           <Form.Control
                             type="text"
                             name="dosyaNumarasi"
+                            placeholder="Dosya numarası"
                             autoComplete='off'
                             maxLength={'11'}
                             value={selectedRapor.dosyaNumarasi}
@@ -370,6 +371,7 @@ const Rapor = () => {
                           <Form.Control
                             type="text"
                             name="taniBaslik"
+                            placeholder="Tanı başlığı"
                             autoComplete='off'
                             value={selectedRapor.taniBaslik}
                             onChange={(e) => handleInputChange(e)}
@@ -381,6 +383,7 @@ const Rapor = () => {
                           <Form.Control
                             type="text"
                             name="taniDetay"
+                            placeholder="Tanı detayları"
                             autoComplete='off'
                             value={selectedRapor.taniDetay}
                             onChange={(e) => handleInputChange(e)}
@@ -390,6 +393,7 @@ const Rapor = () => {
                           <Form.Label>Rapor Verilen Tarih:</Form.Label>
                           <Form.Control
                             type="date"
+                            placeholder="Rapor tarihi"
                             name="raporTarih"
                             value={selectedRapor.raporTarih}
                             onChange={(e) => handleInputChange(e)}
