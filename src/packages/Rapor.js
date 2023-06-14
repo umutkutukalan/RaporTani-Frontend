@@ -321,7 +321,7 @@ const Rapor = () => {
                                     <td>{hasta.ad + ' ' + hasta.soyad}</td>
                                     <td>
                                     <Button size="sm" variant="danger" onClick={() => { removeHasta(hasta.id) }}>
-                                        Remove
+                                        Kaldır
                                     </Button>
                                     </td>
                               </tr>
